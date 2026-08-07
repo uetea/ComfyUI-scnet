@@ -38,6 +38,18 @@ ENV TZ=Etc/UTC
 # Set working directory
 WORKDIR /app
 
+# 1. 定义动态参数（默认值设为国内源，方便本地构建）
+ARG APT_SOURCE="mirrors.aliyun.com"
+ARG PIP_INDEX="https://pypi.org"
+
+# 2. 动态修改 Ubuntu 系统 APT 源
+# 如果传入的是 "default"，则恢复官方默认源；否则替换为指定的镜像源
+RUN if [ "$APT_SOURCE" = "default" ]; then \
+        sed -i "s/${APT_SOURCE}/archive\.ubuntu\.com/" /etc/apt/sources.list ; \
+    else \
+        sed -i "s/archive\.ubuntu\.com/${APT_SOURCE}/" /etc/apt/sources.list ; \
+    fi
+
 # Update and upgrade
 RUN apt-get update --yes && \
     apt-get upgrade --yes && \
@@ -50,10 +62,11 @@ ADD https://astral.sh/uv/install.sh /uv-installer.sh
 RUN sh /uv-installer.sh && rm /uv-installer.sh
 ENV PATH="/root/.local/bin/:$PATH"
 
+ENV PIP_INDEX_URL=${PIP_INDEX}
 # Install essential Python packages and dependencies
 RUN pip install --no-cache-dir -U \
-    wheel \
-	hf_transfer modelscope \
+    wheel pip \
+	hf_transfer modelscope
 
 # Banner
 COPY logo/logo.txt /etc/logo.txt
