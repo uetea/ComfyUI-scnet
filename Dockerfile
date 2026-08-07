@@ -39,15 +39,15 @@ ENV TZ=Etc/UTC
 WORKDIR /app
 
 # 1. 定义动态参数（默认值设为国内源，方便本地构建）
-ARG APT_SOURCE="mirrors.aliyun.com"
+ARG APT_SOURCE="default"
 ARG PIP_INDEX="https://pypi.org"
 
 # 2. 动态修改 Ubuntu 系统 APT 源
 # 如果传入的是 "default"，则恢复官方默认源；否则替换为指定的镜像源
 RUN if [ "$APT_SOURCE" = "default" ]; then \
-        sed -i "s/${APT_SOURCE}/archive\.ubuntu\.com/" /etc/apt/sources.list ; \
+        sed -i 's/mirrors\.aliyun\.com/archive\.ubuntu\.com/' /etc/apt/sources.list ; \
     else \
-        sed -i "s/archive\.ubuntu\.com/${APT_SOURCE}/" /etc/apt/sources.list ; \
+        sed -i 's/archive\.ubuntu\.com/mirrors\.aliyun\.com/' /etc/apt/sources.list ; \
     fi
 
 # Update and upgrade
