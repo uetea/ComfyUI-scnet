@@ -66,7 +66,7 @@ ENV PIP_INDEX_URL=${PIP_INDEX}
 # Install essential Python packages and dependencies
 RUN pip install --no-cache-dir -U \
     wheel pip \
-	hf_transfer modelscope
+    huggingface_hub modelscope
 
 # Banner
 COPY logo/logo.txt /etc/logo.txt
