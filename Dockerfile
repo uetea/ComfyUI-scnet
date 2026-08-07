@@ -1,0 +1,78 @@
+# Set the base image
+ARG BASE_IMAGE=seecsea/jupyterlab-pytorch:2.9.0-ubuntu22.04-dtk26.04-py3.11-devel
+FROM ${BASE_IMAGE}
+
+# Install custom node from custom_nodes.txt
+ARG SKIP_CUSTOM_NODES=""
+
+# Set the shell and enable pipefail for better error handling
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Set basic environment variables
+ENV SHELL=/bin/bash 
+ENV PYTHONUNBUFFERED=True 
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set the default workspace directory
+ENV RP_WORKSPACE=/workspace
+
+# Override the default huggingface cache directory.
+ENV HF_HOME="${RP_WORKSPACE}/.cache/huggingface/"
+
+# Faster transfer of models from the hub to the container
+ENV HF_HUB_ENABLE_HF_TRANSFER=1
+ENV HF_XET_HIGH_PERFORMANCE=1
+
+# Shared python package cache
+ENV VIRTUALENV_OVERRIDE_APP_DATA="${RP_WORKSPACE}/.cache/virtualenv/"
+ENV PIP_CACHE_DIR="${RP_WORKSPACE}/.cache/pip/"
+ENV UV_CACHE_DIR="${RP_WORKSPACE}/.cache/uv/"
+
+# modern pip workarounds
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ENV PIP_ROOT_USER_ACTION=ignore
+
+# Set TZ and Locale
+ENV TZ=Etc/UTC
+
+# Set working directory
+WORKDIR /app
+
+# Update and upgrade
+RUN apt-get update --yes && \
+    apt-get upgrade --yes && \
+	apt-get autoremove -y && apt-get clean && rm -rf /var/cache/apt/archives/*
+
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+
+# Install the UV tool from astral-sh
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
+RUN sh /uv-installer.sh && rm /uv-installer.sh
+ENV PATH="/root/.local/bin/:$PATH"
+
+# Install essential Python packages and dependencies
+RUN pip install --no-cache-dir -U \
+    wheel \
+	hf_transfer modelscope \
+
+# Install ComfyUI and ComfyUI Manager
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
+    cd ComfyUI && \
+    pip install --no-cache-dir -r requirements.txt && \
+    git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager && \
+    cd custom_nodes/ComfyUI-Manager && \
+    pip install --no-cache-dir -r requirements.txt
+
+COPY custom_nodes.txt /app/custom_nodes.txt
+
+RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
+        cd /app/ComfyUI/custom_nodes && \
+        xargs -n 1 git clone --recursive < /app/custom_nodes.txt && \
+        find /ComfyUI/custom_nodes -name "requirements.txt" -exec sh -c 'echo "Installing requirements from: $1" && pip install --no-cache-dir -r "$1"' _ {} \; && \
+        find /ComfyUI/custom_nodes -name "install.py" -exec sh -c 'echo "Running install script: $1" && python "$1"' _ {} \; && \
+        git clone --recursive https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git; \
+		git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git; \
+		git clone https://github.com/seecsea/ComfyUI-llama-cpp.git; \
+    else \
+        echo "Skipping custom nodes installation because SKIP_CUSTOM_NODES is set"; \
+    fi
