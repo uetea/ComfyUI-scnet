@@ -40,7 +40,7 @@ WORKDIR /app
 
 # 1. 定义动态参数（默认值设为国内源，方便本地构建）
 ARG APT_SOURCE="default"
-ARG PIP_INDEX="https://pypi.org"
+ARG PIP_INDEX="https://pypi.org/simple/"
 
 # 2. 动态修改 Ubuntu 系统 APT 源
 # 如果传入的是 "default"，则恢复官方默认源；否则替换为指定的镜像源
