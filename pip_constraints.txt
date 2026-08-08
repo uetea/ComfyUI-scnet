@@ -1,6 +1,15 @@
-flash_attn==2.8.3+das.opt1.dtk2604.torch271
+apex==1.7.0+das.opt1.dtk2604.torch271
+byte_flux==1.0.4+das.opt1.dtk2604.torch271
+dcu-megatron==0.15.0+das.opt1.dtk2604.torch271
+deepspeed==0.18.2+das.opt1.dtk2604.torch271
+flash_attn==2.6.1+das.opt1.dtk2604.torch271
+flash_mla==1.0.0+das.opt1.dtk2604.torch271
+lightop==0.6.0+das.dtk2604.torch271
+lmslim==0.3.1+das.opt1.dtk2604.torch271
+megatron-core==0.15.4+das.opt1.dtk2604.torch271
 onnxruntime==1.19.2+das.opt1.dtk2604.torch271
 torch==2.7.1+das.opt1.dtk2604
-torchaudio==2.7.1+das.opt1.dtk2604.torch271
 torchvision==0.22.0+das.opt1.dtk2604.torch271
+transformer_engine==2.10.0+das.opt1.dtk2604.torch271
 triton==3.1.0+das.opt1.dtk2604.torch271
+vllm==0.11.0+das.opt1.dtk2604.torch271
