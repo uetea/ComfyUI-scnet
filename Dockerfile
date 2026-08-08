@@ -1,5 +1,5 @@
 # Set the base image
-ARG BASE_IMAGE=seecsea/jupyterlab-pytorch:2.9.0-ubuntu22.04-dtk26.04-py3.11-devel
+ARG BASE_IMAGE=seecsea/jupyterlab-pytorch:2.7.1-ubuntu22.04-dtk26.04-py3.11-devel
 FROM ${BASE_IMAGE}
 
 # Install custom node from custom_nodes.txt
