@@ -1,0 +1,6 @@
+flash_attn==2.8.3+das.opt1.dtk2604.torch271
+onnxruntime==1.19.2+das.opt1.dtk2604.torch271
+torch==2.7.1+das.opt1.dtk2604
+torchaudio==2.7.1+das.opt1.dtk2604.torch271
+torchvision==0.22.0+das.opt1.dtk2604.torch271
+triton==3.1.0+das.opt1.dtk2604.torch271
