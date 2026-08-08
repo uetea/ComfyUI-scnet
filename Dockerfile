@@ -38,6 +38,9 @@ ENV TZ=Etc/UTC
 # Set working directory
 WORKDIR /app
 
+COPY logo/logo.txt pip_constraints.txt requirements_dcu.txt /etc/
+RUN pip install --no-cache-dir -r /etc/requirements_dcu.txt
+
 # 1. 定义动态参数（默认值设为国内源，方便本地构建）
 ARG APT_SOURCE="default"
 ARG PIP_INDEX="https://pypi.org/simple/"
@@ -64,7 +67,6 @@ RUN pip install --no-cache-dir -U \
     huggingface_hub modelscope
 
 # Banner
-COPY logo/logo.txt /etc/logo.txt
 RUN echo 'cat /etc/logo.txt' >> /root/.bashrc \
     && echo 'echo -e "\nFor detailed documentation and guides, please visit:\n\033[1;34mhttps://cnb.cool/bigbomb\033[0m and \033[1;34mhttps://cnb.cool/bigbomb\033[0m\n\n"' >> /root/.bashrc
 
