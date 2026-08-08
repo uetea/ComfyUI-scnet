@@ -45,8 +45,8 @@ jobs:
           # 请将 <YOUR_USERNAME> 替换为你的 Docker Hub 用户名
           # 或者直接使用：${{ secrets.DOCKERHUB_USERNAME }}/ai-npc-base:latest
           tags: |
-            ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.9.0-ubuntu22.04-dtk26.04-py3.11-devel-${{ steps.date.outputs.DATE }}
-            ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.9.0-ubuntu22.04-dtk26.04-py3.11-devel-${{ env.COMFYUI_VERSION }}
+            ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.7.1-ubuntu22.04-dtk26.04-py3.11-devel-${{ steps.date.outputs.DATE }}
+            ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.7.1-ubuntu22.04-dtk26.04-py3.11-devel-${{ env.COMFYUI_VERSION }}
           
           # 使用 GitHub 缓存加速后续构建
           cache-from: type=gha
