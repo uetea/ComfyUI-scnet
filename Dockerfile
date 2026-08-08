@@ -35,6 +35,9 @@ ENV PIP_ROOT_USER_ACTION=ignore
 # Set TZ and Locale
 ENV TZ=Etc/UTC
 
+ENV LD_LIBRARY_PATH=/opt/hyhal/lib:/opt/dtk-26.04/.hyhal/rocm_smi/lib:$LD_LIBRARY_PATH
+RUN ldconfig
+
 # Set working directory
 WORKDIR /app
 
