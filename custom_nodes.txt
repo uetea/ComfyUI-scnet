@@ -7,8 +7,6 @@ https://github.com/pollockjj/ComfyUI-MultiGPU.git
 https://github.com/comfyanonymous/ComfyUI_TensorRT.git
 https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git
 https://github.com/cubiq/ComfyUI_essentials.git
-https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
-https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git
 https://github.com/jags111/efficiency-nodes-comfyui.git
 https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
 https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git
