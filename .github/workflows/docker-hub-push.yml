@@ -7,7 +7,7 @@ on:
 
 # 定义一个全局变量，方便后续统一修改 ComfyUI 的版本
 env:
-  COMFYUI_VERSION: "0.30.2"
+  COMFYUI_VERSION: "0.31.0"
 
 jobs:
   build-and-push:
