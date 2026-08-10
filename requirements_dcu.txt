@@ -1,1 +1,2 @@
 https://download.sourcefind.cn:65024/file/4/torchaudio/DAS1.8/torchaudio-2.7.1+das.opt1.dtk2604.torch271-cp311-cp311-manylinux_2_28_x86_64.whl
+https://download.sourcefind.cn:65024/file/4/flash_attn/DAS1.8/flash_attn-2.8.3+das.opt1.dtk2604.torch271-cp311-cp311-manylinux_2_28_x86_64.whl
