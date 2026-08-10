@@ -87,12 +87,6 @@ RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
         cd /app/ComfyUI/custom_nodes && \
         xargs -n 1 git clone --recursive < /app/custom_nodes.txt && \
         find /app/ComfyUI/custom_nodes -name "requirements.txt" -exec sh -c 'echo "Installing requirements from: $1" && pip install --no-cache-dir -r "$1"' _ {} \; && \
-        find /app/ComfyUI/custom_nodes -name "install.py" -exec sh -c 'echo "Running install script: $1" && python "$1"' _ {} \; && \
-		git clone --recursive https://github.com/ltdrdata/ComfyUI-Impact-Pack.git; \
-		git clone --recursive https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git; \
-		pip install --no-cache-dir "numpy<2.0.0"; \
-		find /app/ComfyUI/custom_nodes/ComfyUI-Impact-Pack -name "requirements.txt" -exec sh -c 'echo "Installing requirements from: $1" && LD_LIBRARY_PATH=/opt/hyhal/lib:/opt/hyhal/hsa/lib:/opt/dtk-26.04/.hyhal/hsa/lib:/opt/dtk-26.04/hsa/lib:/opt/dtk-26.04/lib:$LD_LIBRARY_PATH pip install --no-cache-dir -r "$1"' _ {} \; && \
-		find /app/ComfyUI/custom_nodes/ComfyUI-Impact-Subpack -name "requirements.txt" -exec sh -c 'echo "Installing requirements from: $1" && LD_LIBRARY_PATH=/opt/hyhal/lib:/opt/hyhal/hsa/lib:/opt/dtk-26.04/.hyhal/hsa/lib:/opt/dtk-26.04/hsa/lib:/opt/dtk-26.04/lib:$LD_LIBRARY_PATH pip install --no-cache-dir -r "$1"' _ {} \;&& \
         git clone --recursive https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git; \
 		git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git; \
 		git clone https://github.com/seecsea/ComfyUI-llama-cpp.git; \
