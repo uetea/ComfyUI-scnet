@@ -2,6 +2,32 @@
 ARG BASE_IMAGE=seecsea/jupyterlab-pytorch:2.7.1-ubuntu22.04-dtk26.04-py3.11-devel-base
 FROM ${BASE_IMAGE}
 
+ENV PATH=/opt/ucx/bin:/opt/dtk/bin:/opt/dtk/llvm/bin:/opt/dtk/hip/bin:/opt/dtk/hip/bin/hipify:/opt/hyhal/bin:/opt/dtk/opencl/bin:/opt/mpi/bin:/opt/hwloc/bin/:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/conda/bin \
+    TZ=Asia/Shanghai \
+    SHELL=/bin/bash \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    LD_LIBRARY_PATH=/opt/ucx/lib:/opt/dtk/dcc/gcvm/lib:/opt/dtk/hip/lib:/opt/dtk/llvm/lib:/opt/dtk/lib:/opt/dtk/lib64:/opt/hyhal/lib:/opt/hyhal/lib64:/opt/dtk/dushmem/lib:/opt/dtk/opencl/lib:/opt/mpi/lib:/opt/hwloc/lib:/usr/local/lib/:/usr/local/lib64/: \
+    PYTHONPATH=/usr/local/: \
+    MANPATH=/opt/mpi/share/man: \
+    HYHAL_PATH=/opt/hyhal \
+    DTKROOT=/opt/dtk \
+    AMDGPU_TARGETS=gfx906;gfx926;gfx928;gfx936;gfx938 \
+    ROCM_PATH=/opt/dtk \
+    HIP_PATH=/opt/dtk/hip \
+    MIOPEN_FIND_MODE=3 \
+    CMAKE_PREFIX_PATH=/opt/hyhal: \
+    LIBRARY_PATH=/opt/hyhal/lib:/opt/dtk/opencl/lib:/opt/dtk/dushmem/lib: \
+    C_INCLUDE_PATH=/opt/dtk/dcc/gcvm/include:/opt/dtk/include:/opt/hyhal/include:/opt/dtk/llvm/include:/opt/dtk/opencl/include: \
+    CPLUS_INCLUDE_PATH=/opt/dtk/dcc/gcvm/include:/opt/dtk/include:/opt/hyhal/include:/opt/dtk/llvm/include:/opt/dtk/dushmem/include:/opt/dtk/opencl/include: \
+    MOFED_VERSION=23.10-4.0.9.1 \
+    OS_VERSION=ubuntu22.04 \
+    PLATFORM=x86_64 \
+    UCX_HOME=/opt/ucx \
+    HF_ENDPOINT=https://hf-mirror.com \
+    DEBIAN_FRONTEND=noninteractive
+
 # Install custom node from custom_nodes.txt
 ARG SKIP_CUSTOM_NODES=""
 
