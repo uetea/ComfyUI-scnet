@@ -129,3 +129,5 @@ RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
     else \
         echo "Skipping custom nodes installation because SKIP_CUSTOM_NODES is set" ; \
     fi
+
+COPY --chmod=0755 start /app/start
