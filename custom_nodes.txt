@@ -27,7 +27,6 @@ https://github.com/BadCafeCode/masquerade-nodes-comfyui.git
 https://github.com/thalismind/ComfyUI-LoadImageWithFilename.git
 https://github.com/r-vage/ComfyUI-RvTools_v2.git
 https://github.com/scraed/LanPaint.git
-https://github.com/Ltamann/ComfyUI-TBG-ETUR.git
 https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git
 https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
 https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git
