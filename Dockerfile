@@ -78,11 +78,20 @@ ARG PIP_INDEX="https://pypi.org/simple/"
 # 如果传入的是 "default"，则恢复官方默认源；否则替换为指定的镜像源
 RUN if [ "$APT_SOURCE" = "default" ]; then \
         sed -i 's/mirrors\.aliyun\.com/archive\.ubuntu\.com/' /etc/apt/sources.list && \
-		echo "aliyun" ; \
+		echo "aliyun to ubuntu" ; \
     else \
         sed -i 's/archive\.ubuntu\.com/mirrors\.aliyun\.com/' /etc/apt/sources.list && \
-		echo "archive" ; \
+		echo "archive to aliyun" ; \
     fi
+
+# Update and upgrade
+RUN apt-get update --yes && \
+    apt-get upgrade --yes && \
+	apt-get autoremove -y && apt-get clean && rm -rf /var/cache/apt/archives/*
+
+RUN apt-get install --yes --no-install-recommends \
+        git git-lfs wget curl aria2 nginx-light rsync unzip binutils ffmpeg lshw nano tzdata file && \
+    apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
@@ -116,8 +125,7 @@ RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
         xargs -n 1 git clone --recursive < /app/custom_nodes.txt && \
         find /app/ComfyUI/custom_nodes -name "requirements.txt" -exec sh -c 'echo "Installing requirements from: $1" && pip install --no-cache-dir -r "$1"' _ {} \; && \
         git clone --recursive https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
-		git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git && \
-		git clone https://github.com/seecsea/ComfyUI-llama-cpp.git ; \
+		git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git ; \
     else \
         echo "Skipping custom nodes installation because SKIP_CUSTOM_NODES is set" ; \
     fi
