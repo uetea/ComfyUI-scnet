@@ -98,7 +98,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 # Install the UV tool from astral-sh
 ADD https://astral.sh/uv/install.sh /uv-installer.sh
 RUN sh /uv-installer.sh && rm /uv-installer.sh
-ENV PATH="/root/.local/bin/:/app:$PATH"
+ENV PATH="/root/.local/bin/:/app/:$PATH"
 
 ENV PIP_INDEX_URL=${PIP_INDEX}
 # Install essential Python packages and dependencies
