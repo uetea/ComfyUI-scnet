@@ -11,7 +11,7 @@ https://github.com/jags111/efficiency-nodes-comfyui.git
 https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
 https://github.com/JPS-GER/ComfyUI_JPS-Nodes.git
 https://github.com/chrisgoringe/cg-use-everywhere.git
-https://github.com/crystian/ComfyUI-Crystools.git
+https://github.com/uetea/ComfyUI-Crystools.git
 https://github.com/rgthree/rgthree-comfy.git
 https://github.com/alexopus/ComfyUI-Image-Saver.git
 https://github.com/jupo-ai/comfy-ex-tagcomplete.git
