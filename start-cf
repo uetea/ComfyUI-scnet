@@ -1,13 +1,33 @@
 #!/bin/bash
 
 # 检测脚本文件是否存在，存在则执行
-if [ -f "${SCNET_USER_HOME}/scripts/link_models.sh" ]; then
-    bash "${SCNET_USER_HOME}/scripts/link_models.sh" && echo "模型文件连接完成！"
+# 1. 动态获取用户根目录
+if [ -n "${SCNET_USER_HOME}" ]; then
+    # 如果环境变量存在，直接使用
+    USER_HOME_DIR="${SCNET_USER_HOME}"
+else
+    # 如果环境变量不存在（容器环境），通过 ps 1 进程动态提取 /public/home/xxx 目录
+    USER_HOME_DIR=$(ps -fp 1 | grep -oP '/public/home/[^/[:space:]]+' | head -n 1)
+fi
+
+# 2. 检查目录并执行脚本
+if [ -n "${USER_HOME_DIR}" ] && [ -f "${USER_HOME_DIR}/scripts/link_models.sh" ]; then
+    bash "${USER_HOME_DIR}/scripts/link_models.sh" && echo "模型文件连接建立完成！"
 else
     echo "提示: link_models.sh 文件不存在，跳过执行。请手动处理模型文件后刷新ComfyUI浏览器界面。"
 fi
 
-pip install "numpy<2" --force-reinstall --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/
+# 处理NumPy的版本问题
+# 1. 获取当前环境的 NumPy 版本
+NUMPY_VER=$(python3 -c "import numpy; print(numpy.__version__)" 2>/dev/null)
+
+# 2. 判断是否存在且版本小于 2
+if [ $? -eq 0 ] && [ "$(printf '%s\n%s' "$NUMPY_VER" "2.0.0" | sort -V | head -n1)" = "$NUMPY_VER" ] && [ "$NUMPY_VER" != "2.0.0" ]; then
+    echo "提示: 当前环境已存在符合要求的 NumPy 版本 ($NUMPY_VER)，跳过执行。"
+else
+    echo "正在安装/重装符合要求的 NumPy (<2)..."
+    pip install "numpy<2" --force-reinstall --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/
+fi
 
 cd /app/ComfyUI
-python main.py --listen --port 3000 --enable-cors-header
+python main.py --listen --port 3000 --enable-cors-header --cache-none
