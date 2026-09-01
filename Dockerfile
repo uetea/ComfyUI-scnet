@@ -130,4 +130,5 @@ RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
         echo "Skipping custom nodes installation because SKIP_CUSTOM_NODES is set" ; \
     fi
 
+RUN pip install "numpy<2" --force-reinstall --no-cache-dir
 COPY --chmod=0755 start-cf /app/start-cf
