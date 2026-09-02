@@ -30,3 +30,5 @@ https://github.com/scraed/LanPaint.git
 https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git
 https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
 https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git
+https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch.git
+https://github.com/capitan01R/ComfyUI-Flux2Klein-Enhancer.git
