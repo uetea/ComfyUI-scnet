@@ -36,3 +36,4 @@ https://github.com/lbouaraba/comfyui-krea2edit.git
 https://github.com/uetea/comfyui-mixlab-nodes.git
 https://github.com/YaserJaradeh/comfyui-yaser-nodes.git
 https://github.com/sipherxyz/comfyui-art-venture.git
+https://github.com/ClownsharkBatwing/RES4LYF.git
