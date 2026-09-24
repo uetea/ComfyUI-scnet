@@ -130,5 +130,5 @@ RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
         echo "Skipping custom nodes installation because SKIP_CUSTOM_NODES is set" ; \
     fi
 
-RUN pip install "numpy<2" --force-reinstall --no-cache-dir
+RUN pip install "numpy>=1.26,<2" "opencv_python==4.11.0.86" "opencv_contrib_python==4.11.0.86" --force-reinstall --no-cache-dir
 COPY --chmod=0755 start-cf /app/start-cf
