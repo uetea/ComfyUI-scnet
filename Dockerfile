@@ -108,7 +108,7 @@ RUN pip install --no-cache-dir -U \
 
 # Banner
 RUN echo 'cat /etc/logo.txt' >> /root/.bashrc \
-    && echo 'echo -e "\nIf cannot access network, please run: source /etc/bashrc, or please visit:\n\033[1;34mhttps://www.scnet.cn/\033[0m\n\n"' >> /root/.bashrc
+    && echo 'echo -e "\nIf cannot access network, please run: source /etc/bashrc, or please visit:\n\033[1;34mhttps://www.scnet.cn/ui/aihub/image/BigBomb/2093181554018639873\033[0m\n\n"' >> /root/.bashrc
 
 # Install ComfyUI and ComfyUI Manager
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
