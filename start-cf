@@ -7,7 +7,7 @@ if [ -n "${SCNET_USER_HOME}" ]; then
     USER_HOME_DIR="${SCNET_USER_HOME}"
 else
     # 如果环境变量不存在（容器环境），通过 ps 1 进程动态提取 /public/home/xxx 目录
-    USER_HOME_DIR=$(ps -fp 1 | grep -oP '/public/home/[^/[:space:]]+' | head -n 1)
+    USER_HOME_DIR=$(ps -fp 1 | grep -oP '/work|/public/home/[^/[:space:]]+' | head -n 1)
 fi
 
 # 2. 检查目录并执行脚本
@@ -15,6 +15,15 @@ if [ -n "${USER_HOME_DIR}" ] && [ -f "${USER_HOME_DIR}/scripts/link_models.sh" ]
     bash "${USER_HOME_DIR}/scripts/link_models.sh" && echo "模型文件连接建立完成！"
 else
     echo "提示: link_models.sh 文件不存在，跳过执行。请手动处理模型文件后刷新ComfyUI浏览器界面。"
+fi
+
+# 如果notebook环境炸了，直接重启ComfyUI可能会失败，需要重新安装一下下面的依赖
+# 判断输入的第一个参数是否为 --fix
+if [ "$1" == "--fix" ]; then
+    echo "检测到 --fix 参数，正在强制重新安装 scipy 依赖..."
+    pip install --force-reinstall scipy --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/
+else
+    echo "正常启动模式。如果启动后ComfyUI出错退出，请尝试带参数 --fix 重新启动修复模式。无法下载json的错误可以忽略。"
 fi
 
 # 处理NumPy的版本问题
@@ -30,4 +39,4 @@ else
 fi
 
 cd /app/ComfyUI
-python main.py --listen --port 3000 --enable-cors-header --cache-none
+python main.py --listen --port 3000 --enable-cors-header
