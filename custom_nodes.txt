@@ -37,3 +37,11 @@ https://github.com/uetea/comfyui-mixlab-nodes.git
 https://github.com/YaserJaradeh/comfyui-yaser-nodes.git
 https://github.com/sipherxyz/comfyui-art-venture.git
 https://github.com/ClownsharkBatwing/RES4LYF.git
+https://github.com/lrzjason/ComfyUI-EditUtils.git
+https://github.com/goohai/Goohaitools-comfyui.git
+https://github.com/huwhitememes/comfyui-krea2-conditioning.git
+https://github.com/nkxx188/ComfyUI-Krea2-StyleTransfer.git
+https://github.com/facok/ComfyUI-LCS.git
+https://github.com/AICoderTudou/ComfyUI-TT-Resolution_selector-Node.git
+https://github.com/tritant/ComfyUI-Advanced-Photo-Grain.git
+https://github.com/M1kep/ComfyLiterals.git
