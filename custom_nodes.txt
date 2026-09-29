@@ -45,5 +45,4 @@ https://github.com/facok/ComfyUI-LCS.git
 https://github.com/AICoderTudou/ComfyUI-TT-Resolution_selector-Node.git
 https://github.com/tritant/ComfyUI-Advanced-Photo-Grain.git
 https://github.com/M1kep/ComfyLiterals.git
-https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git
 https://github.com/1038lab/ComfyUI-RMBG.git
