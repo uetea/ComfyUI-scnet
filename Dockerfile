@@ -122,7 +122,7 @@ COPY custom_nodes.txt /app/custom_nodes.txt
 
 RUN if [ -z "$SKIP_CUSTOM_NODES" ]; then \
         cd /app/ComfyUI/custom_nodes && \
-        xargs -n 1 git clone --recursive < /app/custom_nodes.txt && \
+        grep -E -v '^[[:space:]]*#|^[[:space:]]*$' /app/custom_nodes.txt | xargs -n 1 git clone --recursive && \
         find /app/ComfyUI/custom_nodes -name "requirements.txt" -exec sh -c 'echo "Installing requirements from: $1" && pip install --no-cache-dir -r "$1"' _ {} \; && \
         git clone --recursive https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
 		git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git ; \
