@@ -4,7 +4,7 @@ https://github.com/city96/ComfyUI-GGUF.git
 https://github.com/yolain/ComfyUI-Easy-Use.git
 https://github.com/Smirnov75/ComfyUI-mxToolkit.git
 https://github.com/pollockjj/ComfyUI-MultiGPU.git
-https://github.com/comfyanonymous/ComfyUI_TensorRT.git
+##https://github.com/comfyanonymous/ComfyUI_TensorRT.git # DCU cannot use this
 https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git
 https://github.com/cubiq/ComfyUI_essentials.git
 https://github.com/jags111/efficiency-nodes-comfyui.git
