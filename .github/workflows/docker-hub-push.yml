@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Get current date
         id: date
@@ -21,14 +19,14 @@ jobs:
       - name: Get ComfyUI Version
         id: comfyui
         run: |
-          # 确保拉取了最新的标签
-          git fetch --tags
-          # 获取最新版本号
-          LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-          # 过滤掉可能存在的开头的 'v'（例如把 v0.43.2 变成 0.43.2，若标签本身不带 v 也不受影响）
+          # 1. 直接查询远程 ComfyUI 仓库的所有标签，并过滤排序找出最新的那个
+          LATEST_TAG=$(git ls-remote --tags --refs https://github.com/Comfy-Org/ComfyUI | awk -F/ '{print $3}' | sort -V | tail -n 1)
+          
+          # 2. 过滤掉开头的 'v'
           VERSION_NUM=$(echo $LATEST_TAG | sed 's/^v//')
-          echo "发现最新版本: $VERSION_NUM"
-          # 输出给后续步骤使用
+          echo "发现 ComfyUI 最新版本: $VERSION_NUM"
+          
+          # 3. 输出给后续步骤使用
           echo "VERSION=$VERSION_NUM" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
