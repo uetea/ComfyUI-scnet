@@ -15,10 +15,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Get current date
         id: date
         run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+
+      - name: Get ComfyUI Version
+        id: comfyui
+        run: |
+          # 确保拉取了最新的标签
+          git fetch --tags
+          # 获取最新版本号
+          LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          # 过滤掉可能存在的开头的 'v'（例如把 v0.43.2 变成 0.43.2，若标签本身不带 v 也不受影响）
+          VERSION_NUM=$(echo $LATEST_TAG | sed 's/^v//')
+          echo "发现最新版本: $VERSION_NUM"
+          # 输出给后续步骤使用
+          echo "VERSION=$VERSION_NUM" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -39,14 +54,14 @@ jobs:
           # file: ./Dockerfile.base-image
           push: true
           build-args: |
-            COMFYUI_VERSION=${{ env.COMFYUI_VERSION }}
+            COMFYUI_VERSION=${{ steps.comfyui.outputs.VERSION }}
             APT_SOURCE=default
             PIP_INDEX=https://pypi.org/simple/
           # 请将 <YOUR_USERNAME> 替换为你的 Docker Hub 用户名
           # 或者直接使用：${{ secrets.DOCKERHUB_USERNAME }}/ai-npc-base:latest
           tags: |
             ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.7.1-ubuntu22.04-dtk26.04-py3.11-devel-${{ steps.date.outputs.DATE }}
-            ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.7.1-ubuntu22.04-dtk26.04-py3.11-devel-${{ env.COMFYUI_VERSION }}
+            ${{ vars.DOCKER_HUB_USERNAME }}/comfyui-scnet:torch2.7.1-ubuntu22.04-dtk26.04-py3.11-devel-${{ steps.comfyui.outputs.VERSION }}
           
           # 使用 GitHub 缓存加速后续构建
           cache-from: type=gha
