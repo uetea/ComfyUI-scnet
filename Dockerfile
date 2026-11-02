@@ -115,8 +115,8 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
     cd ComfyUI && \
 	git checkout $(git describe --tags $(git rev-list --tags --max-count=1)) && \
     pip install --no-cache-dir -r requirements.txt && \
-    git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager && \
-    cd custom_nodes/ComfyUI-Manager && \
+    git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/comfyui-manager && \
+    cd custom_nodes/comfyui-manager && \
     pip install --no-cache-dir -r requirements.txt
 
 COPY custom_nodes.txt /app/custom_nodes.txt
