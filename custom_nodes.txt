@@ -3,6 +3,7 @@ https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 https://github.com/city96/ComfyUI-GGUF.git
 https://github.com/yolain/ComfyUI-Easy-Use.git
 https://github.com/Smirnov75/ComfyUI-mxToolkit.git
+https://github.com/pollockjj/ComfyUI-MultiGPU.git
 ##https://github.com/comfyanonymous/ComfyUI_TensorRT.git # DCU cannot use this
 https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git
 https://github.com/cubiq/ComfyUI_essentials.git
@@ -13,7 +14,7 @@ https://github.com/chrisgoringe/cg-use-everywhere.git
 https://github.com/uetea/ComfyUI-Crystools.git
 https://github.com/rgthree/rgthree-comfy.git
 https://github.com/alexopus/ComfyUI-Image-Saver.git
-https://github.com/jupo-ai/comfy-ex-tagcomplete.git
+https://github.com/huchukato/ComfyUI-TagForge.git
 https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
 https://github.com/orssorbit/ComfyUI-wanBlockswap.git
 https://github.com/numz/ComfyUI-SeedVR2_VideoUpscaler.git
@@ -30,7 +31,7 @@ https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git
 https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
 https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git
 https://github.com/lquesada/ComfyUI-Inpaint-CropAndStitch.git
-https://github.com/capitan01R/ComfyUI-Flux2Klein-Enhancer.git
+https://github.com/brahianrosswill/ComfyUI-Flux2Klein-Enhancer.git
 https://github.com/lbouaraba/comfyui-krea2edit.git
 https://github.com/uetea/comfyui-mixlab-nodes.git
 https://github.com/YaserJaradeh/comfyui-yaser-nodes.git
