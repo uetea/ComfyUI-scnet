@@ -51,5 +51,5 @@ https://github.com/ostris/ComfyUI-Krea2-Ostris-Edit.git
 https://github.com/Azornes/Comfyui-Resolution-Master.git
 https://github.com/axces2000/comfyui-axces2000.git
 https://github.com/ai-joe-git/ComfyUI-Simple-Prompt-Batcher.git
-https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git
+##https://github.com/darksidewalker/ComfyUI-DaSiWa-Nodes.git
 https://github.com/AIMixer/ComfyUI_MiniMaxH3_Director.git
