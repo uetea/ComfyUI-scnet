@@ -46,3 +46,7 @@ https://github.com/AICoderTudou/ComfyUI-TT-Resolution_selector-Node.git
 https://github.com/tritant/ComfyUI-Advanced-Photo-Grain.git
 https://github.com/M1kep/ComfyLiterals.git
 https://github.com/1038lab/ComfyUI-RMBG.git
+https://github.com/K3nt3L/ComfyUI-Krea2-Enhancer.git
+https://github.com/ostris/ComfyUI-Krea2-Ostris-Edit.git
+https://github.com/Azornes/Comfyui-Resolution-Master.git
+https://github.com/axces2000/comfyui-axces2000.git
